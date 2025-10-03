@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 
-public class EquipoDto {
+public class EquipoDTO {
 
     private Long id;
     private String nombre_equipo;

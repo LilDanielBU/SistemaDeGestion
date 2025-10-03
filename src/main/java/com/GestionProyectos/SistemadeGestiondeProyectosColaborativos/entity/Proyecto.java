@@ -1,31 +1,38 @@
 package com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "proyectos")
 public class Proyecto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer idProyecto;
 
-    @Column(unique = true, nullable = false)
     private String nombre;
-
-    @Column(nullable = false)
     private String descripcion;
+    private LocalDate fechaInicio;
+    private LocalDate fechaFin;
 
-    @Column(name = "fecha_inicio")
-    private LocalDate fecha_inicio;
+    // --- CORRECCIÓN AQUÍ ---
+    // Añade fetch = FetchType.EAGER para cargar siempre las tareas junto con el proyecto.
+    @OneToMany(mappedBy = "proyecto", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Tarea> tareas;
 
-    @Column(name = "fecha_final")
-    private LocalDate fecha_final;
+    // --- GETTERS Y SETTERS ---
+
+    public Integer getIdProyecto() { return idProyecto; }
+    public void setIdProyecto(Integer idProyecto) { this.idProyecto = idProyecto; }
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+    public String getDescripcion() { return descripcion; }
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
+    public LocalDate getFechaInicio() { return fechaInicio; }
+    public void setFechaInicio(LocalDate fechaInicio) { this.fechaInicio = fechaInicio; }
+    public LocalDate getFechaFin() { return fechaFin; }
+    public void setFechaFin(LocalDate fechaFin) { this.fechaFin = fechaFin; }
+    public List<Tarea> getTareas() { return tareas; }
+    public void setTareas(List<Tarea> tareas) { this.tareas = tareas; }
 }

@@ -15,32 +15,46 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // CSRF deshabilitado para simplificar
-                .authorizeHttpRequests(authorize -> authorize
-                        // Rutas públicas que cualquiera puede visitar
-                        .requestMatchers("/login", "/register", "/css/**", "/api/auth/register").permitAll()
 
-                        // --- LÍNEA CLAVE AÑADIDA ---
-                        // Permite el acceso a todos los módulos si el usuario está autenticado.
+                .authorizeHttpRequests(authorize -> authorize
+
                         .requestMatchers(
+                                "/login",
+                                "/register",
+                                "/css/**",
+                                "/js/**",
+                                "/images/**"
+                        ).permitAll()
+
+
+                        .requestMatchers(
+                                "/usuarios/**",
+                                "/equipos/**",
+                                "/proyectos/nuevo",
+                                "/proyectos/editar/**",
+                                "/proyectos/eliminar/**"
+                        ).hasAuthority("Administrador")
+
+
+                        .requestMatchers(
+                                "/",
                                 "/dashboard",
-                                "/comentarios/**",
-                                "/equipo/**",
-                                "/proyecto/**",
-                                "/tarea/**",
-                                "/usuario/**"
+                                "/proyectos",
+                                "/proyectos/ver/**",
+                                "/tareas/**",
+                                "/comentarios/**"
                         ).authenticated()
 
-                        // Para cualquier otra ruta no especificada, también se requiere autenticación.
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .loginPage("/login") // Página de login personalizada
-                        .defaultSuccessUrl("/dashboard", true) // Redirige al dashboard tras login exitoso
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/", true)
                         .permitAll()
                 )
                 .logout(logout -> logout
-                        .logoutSuccessUrl("/login?logout") // Redirige a la página de login al cerrar sesión
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login?logout")
                         .permitAll()
                 );
 
