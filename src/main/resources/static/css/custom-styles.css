@@ -1,0 +1,46 @@
+/* Paleta de colores que usaremos */
+:root {
+    --color-fondo-gris: #f0f2f5; /* Un gris claro y suave para el fondo */
+    --color-verde-oscuro: #004d40; /* Un verde oscuro elegante (teal) */
+    --color-verde-hover: #00695c;  /* Un poco más claro para cuando el mouse pasa por encima */
+    --color-texto-principal: #333; /* Un gris oscuro para el texto, buena legibilidad */
+}
+
+/* Estilo general para toda la página */
+body {
+    background-color: var(--color-fondo-gris);
+    color: var(--color-texto-principal);
+}
+
+/* --- Componentes de Bootstrap Modificados --- */
+
+/* Barra de navegación */
+.navbar.bg-dark {
+    background-color: var(--color-verde-oscuro) !important; /* !important para sobreescribir Bootstrap */
+}
+
+/* Botón Primario (Entrar, Registrarse, etc.) */
+.btn-primary {
+    background-color: var(--color-verde-oscuro);
+    border-color: var(--color-verde-oscuro);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-verde-hover);
+    border-color: var(--color-verde-hover);
+}
+
+/* Tarjetas (para formularios de login, dashboard, etc.) */
+.card {
+    border: none; /* Quitamos el borde por defecto */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para que "flote" sobre el fondo */
+}
+
+/* Enlaces */
+a {
+    color: var(--color-verde-oscuro);
+}
+
+a:hover {
+    color: var(--color-verde-hover);
+}

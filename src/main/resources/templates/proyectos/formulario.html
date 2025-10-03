@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Proyecto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/custom-styles.css}">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">Gestor de Proyectos</a>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3 th:text="${proyecto.idProyecto == null ? 'Crear Nuevo Proyecto' : 'Editar Proyecto'}"></h3>
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/proyectos/guardar}" th:object="${proyecto}" method="post">
+
+                        <input type="hidden" th:field="*{idProyecto}" />
+
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre del Proyecto</label>
+                            <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="descripcion" rows="3" th:field="*{descripcion}"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="fechaInicio" class="form-label">Fecha de Inicio</label>
+                            <input type="date" class="form-control" id="fechaInicio" th:field="*{fechaInicio}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="fechaFin" class="form-label">Fecha de Fin (Opcional)</label>
+                            <input type="date" class="form-control" id="fechaFin" th:field="*{fechaFin}">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Guardar Proyecto</button>
+                        <a th:href="@{/proyectos}" class="btn btn-secondary">Cancelar</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

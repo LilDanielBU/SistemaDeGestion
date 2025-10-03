@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Equipos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/custom-styles.css}">
+</head>
+<body>
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>Lista de Equipos</h1>
+        <a th:href="@{/equipos/nuevo}" class="btn btn-primary">Crear Nuevo Equipo</a>
+    </div>
+
+    <div th:if="${equipos.isEmpty()}" class="alert alert-info">
+        No hay equipos registrados.
+    </div>
+
+    <table class="table table-hover align-middle" th:if="${!equipos.isEmpty()}">
+        <thead class="table-dark">
+        <tr>
+            <th>Nombre del Equipo</th>
+            <th>Proyecto Asignado</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="equipo : ${equipos}">
+            <td th:text="${equipo.nombreEquipo}"></td>
+            <td th:text="${equipo.proyecto != null ? equipo.proyecto.nombre : 'N/A'}"></td>
+            <td>
+                <a th:href="@{/equipos/{id}(id=${equipo.idEquipo})}" class="btn btn-info btn-sm">Gestionar Miembros</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/}" class="btn btn-secondary mt-3">Volver al Dashboard</a>
+</div>
+</body>
+</html>

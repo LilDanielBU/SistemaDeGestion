@@ -1,0 +1,27 @@
+/* Nueva paleta de colores para el Colaborador */
+:root {
+    --color-fondo: #ffffff;         /* Fondo blanco */
+    --color-azul-oscuro: #0d47a1;   /* Un azul oscuro más profundo para la barra de navegación */
+    --color-texto-oscuro: #212529;  /* Texto negro/gris oscuro */
+    --color-tarjeta-fondo: #f8f9fa; /* Un gris muy claro para el fondo de las tarjetas */
+}
+
+body {
+    background-color: var(--color-fondo);
+    color: var(--color-texto-oscuro);
+}
+
+.navbar.bg-dark {
+    background-color: var(--color-azul-oscuro) !important;
+}
+
+/* Ajustes para que el texto de los items de la lista se vea bien sobre fondo blanco */
+.list-group-item {
+    background-color: var(--color-tarjeta-fondo);
+    border: 1px solid #dee2e6;
+    color: var(--color-texto-oscuro);
+}
+
+.list-group-item:hover {
+    background-color: #e9ecef; /* Un gris un poco más oscuro al pasar el mouse */
+}
