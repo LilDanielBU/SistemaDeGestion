@@ -16,8 +16,6 @@ public class Proyecto {
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
 
-    // --- CORRECCIÓN AQUÍ ---
-    // Añade fetch = FetchType.EAGER para cargar siempre las tareas junto con el proyecto.
     @OneToMany(mappedBy = "proyecto", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Tarea> tareas;
 

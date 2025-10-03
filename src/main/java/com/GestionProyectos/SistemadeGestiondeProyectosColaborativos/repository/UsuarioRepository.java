@@ -13,8 +13,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
     Optional<Usuario> findByEmail(String email);
 
-    // --- ANOTACIÓN @Query ES CRÍTICA AQUÍ ---
-    // This tells Spring to use your custom query instead of guessing from the method name.
     @Query("SELECT u FROM Usuario u WHERE u NOT IN (SELECT m FROM Equipo e JOIN e.miembros m WHERE e.idEquipo = :equipoId)")
     List<Usuario> findUsuariosNoEnEquipo(@Param("equipoId") Integer equipoId);
 }

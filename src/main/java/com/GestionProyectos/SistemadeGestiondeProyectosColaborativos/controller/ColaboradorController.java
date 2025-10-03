@@ -14,7 +14,7 @@ public class ColaboradorController {
     @Autowired
     private TareaService tareaService;
 
-    // Muestra la página de detalle/actualización de una tarea
+
     @GetMapping("/mis-tareas/{id}")
     public String verTarea(@PathVariable Integer id, Model model) {
         Tarea tarea = tareaService.findById(id).orElseThrow(() -> new RuntimeException("Tarea no encontrada"));
@@ -23,12 +23,11 @@ public class ColaboradorController {
         return "colaborador/tarea-detalle";
     }
 
-    // Procesa la actualización del estado de la tarea
     @PostMapping("/mis-tareas/actualizar-estado")
     public String actualizarEstado(@RequestParam("tareaId") Integer tareaId, @RequestParam("estado") EstadoTarea estado) {
         Tarea tarea = tareaService.findById(tareaId).orElseThrow(() -> new RuntimeException("Tarea no encontrada"));
         tarea.setEstado(estado);
         tareaService.save(tarea);
-        return "redirect:/"; // Redirige al dashboard del colaborador
+        return "redirect:/";
     }
 }

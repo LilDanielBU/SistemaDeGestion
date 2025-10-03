@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service; // <-- ¡IMPORT MUY IMPORTANTE!
 import java.util.List;
 import java.util.Optional;
 
-// --- ¡ASEGÚRATE DE TENER ESTA ANOTACIÓN! ---
 @Service
 public class TareaServiceImpl implements TareaService {
 
@@ -30,7 +29,7 @@ public class TareaServiceImpl implements TareaService {
 
     @Override
     public Tarea save(Tarea tarea) {
-        // Esta línea ahora debería funcionar
+
         return tareaRepository.save(tarea);
     }
 

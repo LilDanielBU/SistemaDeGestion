@@ -27,10 +27,10 @@ public class Tarea {
     @JoinColumn(name = "id_usuario_asignado")
     private Usuario usuarioAsignado;
 
-    // En Tarea.java
+
     @OneToMany(mappedBy = "tarea", cascade = CascadeType.ALL, fetch = FetchType.EAGER) // <-- Añadir EAGER
     private List<Comentario> comentarios;
-    // --- GETTERS Y SETTERS ---
+    // --- GETTERS Y SETTERS
 
     public Integer getIdTarea() { return idTarea; }
     public void setIdTarea(Integer idTarea) { this.idTarea = idTarea; }
@@ -42,7 +42,7 @@ public class Tarea {
     public void setEstado(EstadoTarea estado) { this.estado = estado; }
     public PrioridadTarea getPrioridad() { return prioridad; }
     public void setPrioridad(PrioridadTarea prioridad) { this.prioridad = prioridad; }
-    public Proyecto getProyecto() { return proyecto; } // <-- El método que faltaba
+    public Proyecto getProyecto() { return proyecto; }
     public void setProyecto(Proyecto proyecto) { this.proyecto = proyecto; }
     public Usuario getUsuarioAsignado() { return usuarioAsignado; }
     public void setUsuarioAsignado(Usuario usuarioAsignado) { this.usuarioAsignado = usuarioAsignado; }

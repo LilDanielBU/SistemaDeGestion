@@ -1,9 +1,7 @@
 package com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.service;
 
-
 import com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.entity.Tarea;
 import com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.entity.Usuario;
-
 import java.util.List;
 import java.util.Optional;
 

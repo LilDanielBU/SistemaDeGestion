@@ -25,7 +25,7 @@ public class ComentarioController {
     @PostMapping("/tareas/{tareaId}/comentarios")
     public String guardarComentario(@PathVariable Integer tareaId,
                                     @RequestParam String contenido,
-                                    @AuthenticationPrincipal Usuario autor) { // Obtiene el usuario logueado
+                                    @AuthenticationPrincipal Usuario autor) {
 
         Tarea tarea = tareaService.findById(tareaId)
                 .orElseThrow(() -> new RuntimeException("Tarea no encontrada"));
@@ -37,14 +37,13 @@ public class ComentarioController {
 
         comentarioService.save(nuevoComentario);
 
-        // --- LÓGICA DE REDIRECCIÓN CORREGIDA ---
-        // Verificamos el rol del usuario para saber a dónde redirigir.
+
         if (autor.getRol() == Rol.Administrador) {
-            // Si es admin, lo mandamos a la vista de detalle del proyecto.
+
             Integer proyectoId = tarea.getProyecto().getIdProyecto();
             return "redirect:/proyectos/ver/" + proyectoId;
         } else {
-            // Si es colaborador, lo mandamos de vuelta a la vista de detalle de SU tarea.
+
             return "redirect:/mis-tareas/" + tareaId;
         }
     }

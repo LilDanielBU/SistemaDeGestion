@@ -9,7 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional; // <-- Importante añadir
+import java.util.Optional;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
@@ -35,7 +35,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         return usuarioRepository.findUsuariosNoEnEquipo(equipoId);
     }
 
-    // --- MÉTODOS QUE FALTABAN ---
+
 
     @Override
     public List<Usuario> findAll() {
@@ -49,7 +49,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Usuario save(Usuario usuario) {
-        // Este método sirve tanto para crear como para actualizar usuarios
+
         return usuarioRepository.save(usuario);
     }
 

@@ -21,7 +21,6 @@ public class Comentario {
     @JoinColumn(name = "id_usuario")
     private Usuario autor;
 
-    // --- GETTERS Y SETTERS ---
 
     public Integer getIdComentario() {
         return idComentario;

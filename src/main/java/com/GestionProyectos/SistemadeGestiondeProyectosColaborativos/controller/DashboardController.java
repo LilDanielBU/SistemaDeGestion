@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class DashboardController {
 
-    // --- CORRECCIÓN 1: INYECCIÓN DE DEPENDENCIAS ---
-    // Estas líneas le dicen a Spring que necesita proporcionar los servicios.
     @Autowired
     private DashboardService dashboardService;
 
@@ -25,18 +23,16 @@ public class DashboardController {
     @GetMapping("/")
     public String mostrarDashboard(Model model, @AuthenticationPrincipal Usuario usuario) {
 
-        // --- CORRECCIÓN 2: COMPARACIÓN DE ROL ---
-        // Se compara directamente con el enum, que es más seguro y correcto.
+
         if (usuario.getRol() == Rol.Administrador) {
 
-            // Si es Admin, muestra el dashboard de siempre
             DashboardStatsDTO stats = dashboardService.getDashboardStats();
             model.addAttribute("stats", stats);
             return "index";
 
         } else {
 
-            // Si es Colaborador, busca solo sus tareas y lo envía a su propio dashboard
+
             model.addAttribute("misTareas", tareaService.findByUsuarioAsignado(usuario));
             return "colaborador/dashboard";
 

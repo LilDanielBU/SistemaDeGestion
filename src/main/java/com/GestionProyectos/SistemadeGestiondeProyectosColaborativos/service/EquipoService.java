@@ -1,7 +1,5 @@
 package com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.service;
 
-
-
 import com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.entity.Equipo;
 import java.util.List;
 import java.util.Optional;

@@ -16,8 +16,7 @@ public class Equipo {
     @JoinColumn(name = "id_proyecto")
     private Proyecto proyecto;
 
-    // --- CORRECCIÓN AQUÍ ---
-    // Añade fetch = FetchType.EAGER para cargar siempre los miembros con el equipo.
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "miembros_equipo",

@@ -21,8 +21,6 @@ public class TareaController {
     @Autowired
     private ProyectoService proyectoService;
 
-    // EL MÉTODO @GetMapping("/nueva") HA SIDO ELIMINADO PORQUE NO SE USA
-
     @PostMapping("/guardar")
     public String guardarTarea(@PathVariable("proyectoId") Integer proyectoId, @ModelAttribute("tarea") Tarea tarea) {
         Proyecto proyecto = proyectoService.findById(proyectoId)

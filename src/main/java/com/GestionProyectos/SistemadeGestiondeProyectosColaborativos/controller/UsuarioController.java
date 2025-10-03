@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller; // <-- Asegúrate de tener est
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@Controller // <-- Anotación CRÍTICA
+@Controller
 @RequestMapping("/usuarios") // <-- URL base para toda la clase
 public class UsuarioController {
 
@@ -19,14 +19,13 @@ public class UsuarioController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    // --- ESTE ES EL MÉTODO QUE MANEJA LA URL /usuarios ---
     @GetMapping // <-- Anotación CRÍTICA
     public String listarUsuarios(Model model) {
         model.addAttribute("listaUsuarios", usuarioService.findAll());
         return "usuarios/lista"; // Devuelve la vista de la lista
     }
 
-    // Muestra el formulario para crear un nuevo usuario
+
     @GetMapping("/nuevo")
     public String mostrarFormularioNuevo(Model model) {
         model.addAttribute("usuario", new Usuario());
@@ -34,7 +33,6 @@ public class UsuarioController {
         return "usuarios/formulario";
     }
 
-    // Muestra el formulario para editar un usuario existente
     @GetMapping("/editar/{id}")
     public String mostrarFormularioEditar(@PathVariable("id") Integer id, Model model) {
         Usuario usuario = usuarioService.findById(id).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
@@ -43,7 +41,7 @@ public class UsuarioController {
         return "usuarios/formulario";
     }
 
-    // Procesa el guardado (tanto para crear como para editar)
+
     @PostMapping("/guardar")
     public String guardarUsuario(@ModelAttribute("usuario") Usuario usuario) {
         if (usuario.getIdUsuario() == null && usuario.getPassword() != null && !usuario.getPassword().isEmpty()) {
@@ -53,7 +51,7 @@ public class UsuarioController {
         return "redirect:/usuarios";
     }
 
-    // Elimina un usuario
+
     @GetMapping("/eliminar/{id}")
     public String eliminarUsuario(@PathVariable("id") Integer id) {
         usuarioService.deleteById(id);

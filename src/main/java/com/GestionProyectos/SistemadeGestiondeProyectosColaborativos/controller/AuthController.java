@@ -17,14 +17,12 @@ public class AuthController {
     @Autowired
     private UsuarioService usuarioService;
 
-    // Muestra el formulario de registro
     @GetMapping("/register")
     public String mostrarFormularioRegistro(Model model) {
         model.addAttribute("usuario", new Usuario());
         return "register";
     }
 
-    // Procesa el envío del formulario de registro
     @PostMapping("/register")
     public String procesarRegistro(@ModelAttribute Usuario usuario, RedirectAttributes redirectAttributes) {
         try {
@@ -38,8 +36,6 @@ public class AuthController {
         }
     }
 
-    // --- MÉTODO NUEVO AÑADIDO ---
-    // Muestra la página de login personalizada
     @GetMapping("/login")
     public String mostrarLogin() {
         return "login"; // Renderiza la vista 'login.html'

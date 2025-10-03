@@ -1,7 +1,5 @@
 package com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.repository;
 
-
-
 import com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.entity.EstadoTarea;
 import com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.entity.Tarea;
 import com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.entity.Usuario;

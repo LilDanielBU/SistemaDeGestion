@@ -5,7 +5,6 @@ public class DashboardStatsDTO {
     private long tareasActivas;
     private long totalUsuarios;
 
-    // --- Getters y Setters ---
 
     public long getTotalProyectos() { return totalProyectos; }
     public void setTotalProyectos(long totalProyectos) { this.totalProyectos = totalProyectos; }

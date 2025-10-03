@@ -1,6 +1,5 @@
 package com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.controller;
 
-// --- Imports necesarios ---
 import com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.entity.*;
 import com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.repository.EquipoRepository;
 import com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.service.ProyectoService;
@@ -17,7 +16,6 @@ public class ProyectoController {
     @Autowired
     private ProyectoService proyectoService;
 
-    // --- Inyecta el repositorio de Equipo aquí ---
     @Autowired
     private EquipoRepository equipoRepository;
 
@@ -39,25 +37,21 @@ public class ProyectoController {
         return "redirect:/proyectos";
     }
 
-    // --- MÉTODO CORREGIDO Y COMPLETO ---
     @GetMapping("/ver/{id}")
     public String verProyectoDetalle(@PathVariable("id") Integer id, Model model) {
         Proyecto proyecto = proyectoService.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("ID de Proyecto inválido:" + id));
 
-        // Pasa los datos del proyecto y sus tareas (esto ya lo tenías)
+
         model.addAttribute("proyecto", proyecto);
         model.addAttribute("tareas", proyecto.getTareas());
 
-        // Pasa un objeto vacío para el formulario de nueva tarea
         model.addAttribute("nuevaTarea", new Tarea());
 
-        // --- LÓGICA QUE FALTABA, AHORA EN EL LUGAR CORRECTO ---
-        // Pasa los enums para los menús desplegables del formulario de tareas
         model.addAttribute("estados", EstadoTarea.values());
         model.addAttribute("prioridades", PrioridadTarea.values());
 
-        // Busca el equipo del proyecto y pasa la lista de sus miembros
+
         Equipo equipo = equipoRepository.findByProyecto_IdProyecto(id);
         if (equipo != null) {
             model.addAttribute("miembrosDelEquipo", equipo.getMiembros());

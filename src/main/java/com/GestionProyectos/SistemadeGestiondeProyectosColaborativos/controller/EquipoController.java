@@ -26,7 +26,7 @@ public class EquipoController {
         return "equipos/lista";
     }
 
-    // --- NUEVO MÉTODO PARA MOSTRAR EL FORMULARIO ---
+
     @GetMapping("/nuevo")
     public String mostrarFormularioNuevoEquipo(Model model) {
         model.addAttribute("equipo", new Equipo());
