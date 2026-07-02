@@ -1,7 +1,7 @@
 package com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.controller;
 
 import com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.dto.DashboardStatsDTO;
-import com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.entity.Rol; // <-- IMPORT AÑADIDO
+import com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.entity.Rol; 
 import com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.entity.Usuario;
 import com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.service.DashboardService;
 import com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.service.TareaService;
