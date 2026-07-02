@@ -1,7 +1,7 @@
 package com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.controller;
 
 import com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.entity.Comentario;
-import com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.entity.Rol; // <-- Asegúrate de tener este import
+import com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.entity.Rol; 
 import com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.entity.Tarea;
 import com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.entity.Usuario;
 import com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.service.ComentarioService;
