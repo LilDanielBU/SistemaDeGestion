@@ -5,12 +5,13 @@ import com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.entity.Usua
 import com.GestionProyectos.SistemadeGestiondeProyectosColaborativos.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Controller; // <-- Asegúrate de tener este import
+import org.springframework.stereotype.Controller; 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/usuarios") // <-- URL base para toda la clase
+// url base 
+@RequestMapping("/usuarios") 
 public class UsuarioController {
 
     @Autowired
@@ -18,21 +19,21 @@ public class UsuarioController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-
-    @GetMapping // <-- Anotación CRÍTICA
+// anotacion necesaria
+    @GetMapping 
     public String listarUsuarios(Model model) {
         model.addAttribute("listaUsuarios", usuarioService.findAll());
         return "usuarios/lista"; // Devuelve la vista de la lista
     }
 
-
+// crear usuario
     @GetMapping("/nuevo")
     public String mostrarFormularioNuevo(Model model) {
         model.addAttribute("usuario", new Usuario());
         model.addAttribute("roles", Rol.values());
         return "usuarios/formulario";
     }
-
+// editar usuarios creados
     @GetMapping("/editar/{id}")
     public String mostrarFormularioEditar(@PathVariable("id") Integer id, Model model) {
         Usuario usuario = usuarioService.findById(id).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
@@ -41,7 +42,7 @@ public class UsuarioController {
         return "usuarios/formulario";
     }
 
-
+// guardar usuarios
     @PostMapping("/guardar")
     public String guardarUsuario(@ModelAttribute("usuario") Usuario usuario) {
         if (usuario.getIdUsuario() == null && usuario.getPassword() != null && !usuario.getPassword().isEmpty()) {
@@ -51,7 +52,7 @@ public class UsuarioController {
         return "redirect:/usuarios";
     }
 
-
+// eliminar usuarios
     @GetMapping("/eliminar/{id}")
     public String eliminarUsuario(@PathVariable("id") Integer id) {
         usuarioService.deleteById(id);
