@@ -11,8 +11,7 @@
     <h1 th:text="${proyecto.nombre}"></h1>
     <p class="lead" th:text="${proyecto.descripcion}"></p>
     <hr>
-
-    <!-- FORMULARIO PARA AÑADIR NUEVA TAREA (Este ya estaba bien) -->
+    <!-- FORMULARIO PARA AÑADIR NUEVA TAREA  -->
     <div class="card mb-4">
         <div class="card-header">
             <h5>Añadir Nueva Tarea</h5>
@@ -55,8 +54,7 @@
             </form>
         </div>
     </div>
-
-    <!-- LISTA DE TAREAS (Aquí están las correcciones) -->
+    <!-- LISTA DE TAREAS ) -->
     <h2>Tareas del Proyecto</h2>
     <div th:if="${tareas.isEmpty()}" class="alert alert-info">Este proyecto no tiene tareas asignadas.</div>
 
@@ -75,7 +73,7 @@
                         <span class="badge ms-2" th:classappend="${tarea.prioridad?.name() == 'Baja' ? 'bg-info text-dark' : (tarea.prioridad?.name() == 'Media' ? 'bg-warning text-dark' : 'bg-danger')}" th:text="${tarea.prioridad}"></span>
                     </div>
 
-                    <!-- --- CORRECCIÓN AQUÍ: AÑADIDO BLOQUE PARA MOSTRAR USUARIO ASIGNADO --- -->
+                    <!-- --- BLOQUE PARA MOSTRAR USUARIO ASIGNADO --- -->
                     <div class="mb-3">
                         <strong>Asignada a:</strong>
                         <span th:if="${tarea.usuarioAsignado != null}" th:text="${tarea.usuarioAsignado.nombreCompleto}" class="fw-bold"></span>
