@@ -27,8 +27,8 @@ public class Tarea {
     @JoinColumn(name = "id_usuario_asignado")
     private Usuario usuarioAsignado;
 
-
-    @OneToMany(mappedBy = "tarea", cascade = CascadeType.ALL, fetch = FetchType.EAGER) // <-- Añadir EAGER
+    //Cuando consultes una Tarea, automáticamente se cargarán todas sus subTareas en la misma consulta
+    @OneToMany(mappedBy = "tarea", cascade = CascadeType.ALL, fetch = FetchType.EAGER) 
     private List<Comentario> comentarios;
     // --- GETTERS Y SETTERS
 
